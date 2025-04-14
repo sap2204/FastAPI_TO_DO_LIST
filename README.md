@@ -61,7 +61,7 @@ docker compose up
 
 ## Примеры запросов с использованием URL
 
-Регистрация нового пользователя
+__Регистрация нового пользователя__
 
 curl -X 'POST' \
   'http://localhost:8000/users/register' \
@@ -72,7 +72,7 @@ curl -X 'POST' \
   "password": "password123"
 }'
 
-Вход пользователя
+__Вход пользователя__
 
 curl -X 'POST' \
   'http://localhost:8000/users/login' \
@@ -82,22 +82,23 @@ curl -X 'POST' \
   "password": "password123"
 }'
 
-Получение списка всех пользователей
+__Получение списка всех пользователей__
 
 curl -X 'GET' \
   'http://localhost:8000/users/all_users'
 
-Получение информации о пользователе по ID
+
+__Получение информации о пользователе по ID__
 
 curl -X 'GET' \
   'http://localhost:8000/users/1'
 
-Выход из аккаунта
+__Выход из аккаунта__
 
 curl -X 'POST' \
   'http://localhost:8000/users/logout'
 
-Добавление задачи
+__Добавление задачи__
 
 curl -X 'POST' \
   'http://localhost:8000/tasks/add_task' \
@@ -108,17 +109,17 @@ curl -X 'POST' \
   "status": "In Progress"
 }'
 
-Получение списка всех задач
+__Получение списка всех задач__
 
 curl -X 'GET' \
   'http://localhost:8000/tasks/all_tasks'
 
-Получение задачи по ID
+__Получение задачи по ID__
 
 curl -X 'GET' \
   'http://localhost:8000/tasks/1'
 
-Обновление задачи
+__Обновление задачи__
 
 curl -X 'PUT' \
   'http://localhost:8000/tasks/update/1' \
@@ -129,7 +130,7 @@ curl -X 'PUT' \
   "status": "In Progress"
 }'
 
-Удаление задачи
+__Удаление задачи__
 
 curl -X 'DELETE' \
   'http://localhost:8000/tasks/delete/1'
@@ -139,7 +140,7 @@ curl -X 'DELETE' \
 
 Этот токен должен быть передан в запросах для авторизации, если они требуют аутентификации. Для этого достаточно, чтобы браузер или клиент отправлял его в cookie.
 
-Пример: Установка токена в cookie
+__Пример: Установка токена в cookie__
 
 curl -X 'POST' \
   'http://localhost:8000/users/login' \
@@ -148,9 +149,10 @@ curl -X 'POST' \
   "email": "john.doe@example.com",
   "password": "password123"
 }' -c cookies.txt
+
 Когда вы выходите из аккаунта с помощью эндпоинта /users/logout, токен удаляется из cookie, и дальнейшие запросы без токена будут отклоняться.
 
-Пример: Удаление токена
+__Пример: Удаление токена__
 
 curl -X 'POST' \
   'http://localhost:8000/users/logout' \
