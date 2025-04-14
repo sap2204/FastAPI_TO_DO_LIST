@@ -1,0 +1,26 @@
+[
+    {
+        "user_id": 1,
+        "name": "task_1",
+        "description": "task_1",
+        "status": "new"
+    },
+    {
+        "user_id": 1,
+        "name": "task_2",
+        "description": "task_2",
+        "status": "new"
+    },
+    {
+        "user_id": 2,
+        "name": "task_3",
+        "description": "task_3",
+        "status": "new"
+    },
+    {
+        "user_id": 2,
+        "name": "task_4",
+        "description": "task_4",
+        "status": "new"
+    }
+]
