@@ -21,11 +21,12 @@
 > poetry install
 
 ### 1.1 Настройка переменных окружения
+
 Переименуйте файлы файлы:
 
-```text
-.env.example → .env  
-.env-non-dev.example → .env-non-dev
+
+> .env.example → .env  
+> .env-non-dev.example → .env-non-dev
 
 В указанных файлах замените **** на Ваши данные для подключения к базе данных.
 
@@ -55,7 +56,7 @@ docker compose up
 
 После запуска контейнеров документация API будет доступна по адресу:
 
-> http://localhost:9000/docs
+> `http://localhost:9000/docs`
 
 
 ## Примеры запросов с использованием URL
