@@ -8,12 +8,25 @@ from pydantic import EmailStr
 
 from app.config import settings
 from app.users.dao import UsersDAO
+from fastapi import HTTPException, status
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
+
+def check_password_complexity(password: str) -> str:
+    if len(password) < 5 or not all(char.isalnum() and char.isascii() for char in password):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, 
+                            detail="Длина пароля должна быть минимум 5 символов (цифры, латинские большие и маленькие буквы"
+                            )
+                            
+    return password
+
+
+
 def get_password_hash(password: str) -> str:
     """Функция для хеширования пароля"""
+    check_password_complexity(password)
     return pwd_context.hash(password)
 
 

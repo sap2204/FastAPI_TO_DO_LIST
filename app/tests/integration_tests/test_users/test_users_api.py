@@ -8,9 +8,10 @@ from httpx import AsyncClient
 @pytest.mark.parametrize(
     "name, email, password, status",
     [
-        ("sergei", "sergei@sergei.com", "sergei", 201),
-        ("sergei", "sergei@sergei.com", "sergei", 409),
-        ("sergei", "wrong_email", "sergei", 422),
+        ("sergei", "sergei@sergei.com", "sergei1", 201),
+        ("sergei", "sergei@sergei.com", "sergei1", 409),
+        ("sergei", "wrong_email", "sergei1", 422),
+        ("sergei", "sergei_1@sergei.com", "serg", 400),
     ],
 )
 async def test_add_user(name, email, password, status, async_client: AsyncClient):
@@ -26,9 +27,9 @@ async def test_add_user(name, email, password, status, async_client: AsyncClient
 @pytest.mark.parametrize(
     "email, password, status",
     [
-        ("test1@test1.com", "test", 200),
-        ("test2@test2.com", "artem", 200),
-        ("test@test1.com", "test", 401),
+        ("test1@test1.com", "test1", 200),
+        ("test2@test2.com", "test2", 200),
+        ("test@test1.com", "test1", 401),
         ("test1@test1.com", "test_1", 401),
     ],
 )
@@ -78,7 +79,7 @@ async def test_get_user_by_id(user_id, status, async_client: AsyncClient):
     [
         (1, "test3", "test3@test3.com", "test3", 200),
         (10, "test2", "test2@test2.com", "test", 404),
-        (1, "test2", "email", "test", 422),
+        (1, "test2", "email", "test1", 422),
     ],
 )
 async def test_update_user_by_id(

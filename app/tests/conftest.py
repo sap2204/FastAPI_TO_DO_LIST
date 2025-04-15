@@ -54,7 +54,7 @@ async def authenticated_ac():
     transport = ASGITransport(app=fastapi_app)
     async with AsyncClient(transport=transport, base_url="http://test") as async_client:
         await async_client.post(
-            "users/login", json={"email": "test1@test1.com", "password": "test"}
+            "users/login", json={"email": "test1@test1.com", "password": "test1"}
         )
         assert async_client.cookies["todolist_access_token"]
         yield async_client
