@@ -3,4 +3,6 @@ venv/
 .env-non-dev
 .pytest_cache/
 .vscode/
-.app/_pycache__/
+__pycache__/
+*.py[cod]
+*.pyo
