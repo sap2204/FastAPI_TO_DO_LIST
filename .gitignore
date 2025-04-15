@@ -3,3 +3,4 @@ venv/
 .env-non-dev
 .pytest_cache/
 .vscode/
+.app/_pycache__/

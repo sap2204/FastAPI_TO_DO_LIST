@@ -63,7 +63,7 @@ docker compose up
 
 __Регистрация нового пользователя__
 
-curl -X 'POST' \
+> curl -X 'POST' \
   'http://localhost:8000/users/register' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -74,7 +74,7 @@ curl -X 'POST' \
 
 __Вход пользователя__
 
-curl -X 'POST' \
+> curl -X 'POST' \
   'http://localhost:8000/users/login' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -84,23 +84,23 @@ curl -X 'POST' \
 
 __Получение списка всех пользователей__
 
-curl -X 'GET' \
+> curl -X 'GET' \
   'http://localhost:8000/users/all_users'
 
 
 __Получение информации о пользователе по ID__
 
-curl -X 'GET' \
+> curl -X 'GET' \
   'http://localhost:8000/users/1'
 
 __Выход из аккаунта__
 
-curl -X 'POST' \
+> curl -X 'POST' \
   'http://localhost:8000/users/logout'
 
 __Добавление задачи__
 
-curl -X 'POST' \
+> curl -X 'POST' \
   'http://localhost:8000/tasks/add_task' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -111,17 +111,17 @@ curl -X 'POST' \
 
 __Получение списка всех задач__
 
-curl -X 'GET' \
+> curl -X 'GET' \
   'http://localhost:8000/tasks/all_tasks'
 
 __Получение задачи по ID__
 
-curl -X 'GET' \
+> curl -X 'GET' \
   'http://localhost:8000/tasks/1'
 
 __Обновление задачи__
 
-curl -X 'PUT' \
+> curl -X 'PUT' \
   'http://localhost:8000/tasks/update/1' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -132,7 +132,7 @@ curl -X 'PUT' \
 
 __Удаление задачи__
 
-curl -X 'DELETE' \
+> curl -X 'DELETE' \
   'http://localhost:8000/tasks/delete/1'
 
 📌 Описание работы с токенами и куки
@@ -142,7 +142,7 @@ curl -X 'DELETE' \
 
 __Пример: Установка токена в cookie__
 
-curl -X 'POST' \
+> curl -X 'POST' \
   'http://localhost:8000/users/login' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -154,6 +154,6 @@ curl -X 'POST' \
 
 __Пример: Удаление токена__
 
-curl -X 'POST' \
+> curl -X 'POST' \
   'http://localhost:8000/users/logout' \
   -b cookies.txt
