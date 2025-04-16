@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter, HTTPException, Response, status
 
-from app.users.auth import authenticate_user, create_access_token, get_password_hash
+from app.users.auth import authenticate_user, create_access_token, create_refresh_token, get_password_hash
 from app.users.dao import UsersDAO
 from app.users.schemas import SUser, SUserAuth
 
@@ -35,7 +35,9 @@ async def login_user(response: Response, user_data: SUser):
             detail="Пользователь не аутентифицирован",
         )
     access_token = create_access_token({"sub": str(user.id)})
+    refresh_token = create_refresh_token({"sub": str(user.id)})
     response.set_cookie("todolist_access_token", access_token, httponly=True)
+    response.set_cookie("todolist_refresh_token", refresh_token, httponly=True)
     return {"message": "Вы успешно вошли в свой аккаунт"}
 
 
@@ -43,6 +45,7 @@ async def login_user(response: Response, user_data: SUser):
 async def logout_user(response: Response):
     """Функция, реализующая выход из аккаунта"""
     response.delete_cookie("todolist_access_token")
+    response.delete_cookie("todolist_refresh_token")
     return {"message": "Вы вышли из аккаунта"}
 
 
