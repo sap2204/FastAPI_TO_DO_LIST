@@ -2,8 +2,9 @@
 
 from sqlalchemy import delete, insert, select, update
 
-from app.database import async_session_maker
 from app.dao.helper import retry_db_connect
+from app.database import async_session_maker
+from app.logs.helper import log_function
 
 
 class BaseDAO:
@@ -12,6 +13,7 @@ class BaseDAO:
     model = None
 
     @classmethod
+    @log_function
     @retry_db_connect
     async def find_all(cls):
         """Метод, позволяющий получить все записи из БД в зависимости от модели"""
@@ -21,6 +23,7 @@ class BaseDAO:
             return result.mappings().all()
 
     @classmethod
+    @log_function
     @retry_db_connect
     async def find_one_or_none(cls, **filter):
         """Метод, возвращающий либо одну запись из БД, либо ничего"""
@@ -30,6 +33,7 @@ class BaseDAO:
             return result.mappings().one_or_none()
 
     @classmethod
+    @log_function
     @retry_db_connect
     async def find_by_id(cls, model_id: int):
         """Метод, позволяющий найти запись по id"""
@@ -39,6 +43,7 @@ class BaseDAO:
             return result.mappings().one_or_none()
 
     @classmethod
+    @log_function
     @retry_db_connect
     async def add_to_db(cls, **data):
         """Метод, описывающий добавление записи в БД"""
@@ -52,12 +57,15 @@ class BaseDAO:
                 raise
 
     @classmethod
+    @log_function
     @retry_db_connect
     async def update(cls, model_id: int, data: dict):
         """Метод, описывающий обновление записи в БД по id"""
         async with async_session_maker() as session:
             try:
-                statement = update(cls.model).where(cls.model.id == model_id).values(**data)
+                statement = (
+                    update(cls.model).where(cls.model.id == model_id).values(**data)
+                )
                 await session.execute(statement)
                 await session.commit()
 
@@ -70,6 +78,7 @@ class BaseDAO:
                 raise
 
     @classmethod
+    @log_function
     @retry_db_connect
     async def delete(cls, **filter):
         """Метод, описывающий удаление записи из БД"""

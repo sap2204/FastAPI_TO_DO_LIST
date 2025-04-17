@@ -1,12 +1,15 @@
 FROM python:3.10
 
+RUN pip install poetry
+
 RUN mkdir /todolist
 
 WORKDIR /todolist
 
-COPY requirements.txt .
+COPY pyproject.toml poetry.lock ./
 
-RUN pip install -r requirements.txt
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-root
 
 COPY . .
 

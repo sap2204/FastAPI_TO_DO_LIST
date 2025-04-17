@@ -25,7 +25,7 @@ authors = [
     {name = "sap2204",email = "zufs@mail.ru"}
 ]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<4.0"
 dependencies = [
     "alembic (==1.15.2)",
     "annotated-types (==0.7.0)",
@@ -98,7 +98,8 @@ dependencies = [
     "ujson (==5.10.0)",
     "uvicorn (==0.34.0)",
     "watchfiles (==1.0.4)",
-    "websockets (==15.0.1)"
+    "websockets (==15.0.1)",
+    "loguru (>=0.7.3,<0.8.0)"
 ]
 
 
